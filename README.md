@@ -12,7 +12,7 @@ Multiple kexts have been updated to latest version
 
 AMFIPass.kext has been added and `amfi=0x80` has been removed
 
-![](https://raw.githubusercontent.com/fzlee/B460M-ITX-AC-EFI/master/images/sequoia-15.5.png)
+![](https://raw.githubusercontent.com/jzmrexu1s/B460M-ITX-AC-EFI-SEQUOIA/refs/heads/master/images/sequoia-15.5.png)
 
 ## Hardware
 
