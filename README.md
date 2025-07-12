@@ -1,55 +1,35 @@
-## Hackintosh for Asrock B460m ITX/AC. Big Sur supported
+# Hackintosh for Asrock B460M-ITX/AC
 
-## 2024-06-22
+The EFI for Asrock B460M-ITX/AC supporting macOS Sequoia. 
 
-Opencore 1.0.0
-EFI for Sonoma 14.5
+I update this EFI based on @fzlee 's work to make it supports the latest macOS 15.5. 
 
-# Thanks to:
+## Updates
 
-RapidEFI
+Opencore 1.0.5
 
-@chenwutong
+Multiple kexts have been updated to latest version
 
-![](https://raw.githubusercontent.com/fzlee/B460M-ITX-AC-EFI/master/images/sonoma-14.5.png)
+AMFIPass.kext has been added and `amfi=0x80` has been removed
 
-### Specs
+![](https://raw.githubusercontent.com/fzlee/B460M-ITX-AC-EFI/master/images/sequoia-15.5.png)
 
-- Asrock B460m ITRX/AC
-- Intel 10500 with UHD630
-- Kinstom HyperX 3200MHZ 16GB \* 2
-- Intel 760P 512G SSD M.2
-- BCM94352Z
+## Hardware
 
-### What Works:
+- Asrock B460m-ITX/AC
+- Intel Core i5-10600KF
+- Sapphire RX 570 4GB
+- Kingston HyperX 3200MHz 16GB * 2
+- Samsung SSD 990 PRO 4TB
+- Broadcom BCM94360CS2
 
-1. Bluetooth, wireless, Airdrop.
-2. DP.
-3. CPU/FAN sensors etc.
-4. iCloud, iMessage etc.
-5. Audio
-6. Wake-On-Lan
+## Update to Sequoia from Sonoma with OCLP installed
 
-### What broken
-
-1. HDMI
-
-### Notice
-
-1. `device-id` is a must for DeviceProperties->PciRoot(0x0)/Pci(0x2,0x0), or you may suffer crashes on firefox, Photos etc.
-2. DeviceProperties->PciRoot(0x0)/Pci(0x2,0x0)->framebuffer-stolenmem must be removed for iGPU or you may suffer resolution issue with 4K display
-3. Serial number has been removed from PlatForm->Generic, you shoule generate with GenSMBIOS by yourself.
-4. In some cases, onboard GPU doesn't work well with DP 4K display(boot into black screen), you can try to use HDMI instead. or try a discrete GPU.
-
-### Post install
-
-Sonoma has dropped support for Boroadcom wifi card, you need to enbale it with the following guide  
-https://www.youtube.com/watch?v=gHs2CFox6gc&t=115s
-
-To grant permissions to apps:
-
-```bash
-sqlite3 ~/Library/Application\ Support/com.apple.TCC/TCC.db
-insert into access values ('kTCCServiceMicrophone','com.google.Chrome', 0, 2, 2, 1, null, null, null, 'UNUSED', null, null, 1669648527,null,null,'UNUSED',1669648527);
-insert into access values ('kTCCServiceCamera','com.google.Chrome', 0, 2, 2, 1, null, null, null, 'UNUSED', null, null, 1669648527,null,null,'UNUSED',1669648527);
-```
+1. Update Opencore Legacy Patcher to latest version. 
+2. Update EFI. 
+3. Create macOS Installer in Opencore Legacy Patcher. 
+4. Install macOS Sequoia. 
+5. Clear NVRAM. 
+6. Execute Post-Install Root Patch in Opencore Legacy Patcher. 
+7. Restart. 
+8. Now both Wi-Fi and bluetooth should work. 
